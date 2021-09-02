@@ -12,8 +12,7 @@ export default function Appointment(props) {
     <article className="appointment">
       <Header time={props.time} />
                                                                 {/* Set the interviewer to [0].name in the story */}
-      {props.interview ? <Show student={props.interview.student} interviewer={props.interview.interviewer}/> : <Empty />}
-      
+      {props.interview ? <Show student={props.interview.student} interviewer={props.interview.interviewer} /> : <Empty />}
     </article>
   )
 }
