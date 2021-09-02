@@ -130,8 +130,9 @@ storiesOf("InterviewerList", module)
   .add("Preselected", () => (
     <InterviewerList
       interviewers={interviewers}
-      interviewer={3} // match with interviewerList.js line 13
-      setInterviewer={action("setInterviewer")} //interviewer.id
+      value={3} // match with interviewerList.js line 13
+      // setInterviewer={action("setInterviewer")} //interviewer.id
+      onChange={action("onChange")}
     />
   ));
 
