@@ -5,6 +5,7 @@ import { action } from "@storybook/addon-actions";
 
 import "index.scss";
 
+// IMPORTING COMPONENTS BELOW
 import Button from              "components/Button";
 import DayListItem from         "components/DayListItem";
 import DayList from             "components/DayList";
@@ -15,6 +16,9 @@ import Header from              "components/Appointment/Header";
 import Empty from               "components/Appointment/Empty";
 import Show from                "components/Appointment/Show";
 import Confirm from             "components/Appointment/Confirm";
+import Status from              "components/Appointment/Status";
+import Error from               "components/Appointment/Error";
+import { add } from "lodash";
 
 // Button Storybook ------------------------------------------------------
 storiesOf("Button", module)
@@ -151,6 +155,8 @@ storiesOf("Appointment", module)
     .add("Header", () => <Header time="12pm" />)
     .add("Empty", () => <Empty onAdd={action("onAdd")} />)
     .add("Show", () => <Show student="Lydia Miller-Jones" interviewer={interviewers[0].name} onEdit={action("onEdit")} onDelete={action("onDelete")}/>)
-    .add("Confirm", () => <Confirm onCancel={action("onCancel")} onConfirm={action("onConfirm")}/>)
+    .add("Confirm", () => <Confirm message="Delete the Appointment?" onCancel={action("onCancel")} onConfirm={action("onConfirm")}/>)
+    .add("Status", () => <Status message="Deleting"/>)
+    .add("Error", () => <Error  message="Could Not Delete Appointment" onClose={action("onClose")}/>)
 
-
+    
