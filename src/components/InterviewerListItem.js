@@ -13,6 +13,7 @@ export default function InterviewerListItem(props) {
     <li 
       className={interviewerClass}
       onClick={props.setInterviewer}         // set State onClick
+      // onClick={event => props.setItem(props.id)}
     >
       <img
         className="interviewers__item-image" // refer to SCSS
