@@ -18,7 +18,7 @@ import Show from                "components/Appointment/Show";
 import Confirm from             "components/Appointment/Confirm";
 import Status from              "components/Appointment/Status";
 import Error from               "components/Appointment/Error";
-import { add } from "lodash";
+import Form from                "components/Appointment/Form";
 
 // Button Storybook ------------------------------------------------------
 storiesOf("Button", module)
@@ -158,5 +158,7 @@ storiesOf("Appointment", module)
     .add("Confirm", () => <Confirm message="Delete the Appointment?" onCancel={action("onCancel")} onConfirm={action("onConfirm")}/>)
     .add("Status", () => <Status message="Deleting"/>)
     .add("Error", () => <Error  message="Could Not Delete Appointment" onClose={action("onClose")}/>)
+    .add("Edit", () => <Form name="name" interviewers={interviewers} interviewer={3} onSave={action("onSave")} onCancel={action("onCancel")}/>)
+    .add("Create", () => <Form interviewers={interviewers} onSave={action("onSave")} onCancel={action("onCancel")}/>)
 
-    
+
