@@ -3,7 +3,9 @@ import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment/index";
 import axios from "axios";
+import { getAppointmentsForDay } from "helpers/selectors";
 
+// FAKE DATA NO LONGER NEEDED w/ AXIOS API GET
 // const days = [
 //   {
 //     id: 1,
@@ -72,10 +74,19 @@ const appointments = [
 
 
 export default function Application(props) {
-  const [day, setDay] = useState("Monday");
-  const [days, setDays] = useState([]);
+  // const [day, setDay] = useState("Monday");
+  // const [days, setDays] = useState([]);
 
-  
+  // combine two states
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {}
+  });
+
+  const setDay = day => setState({ ...state, day });
+  const setDays = days => setState(prev => ({ ...prev, days}));
+
   useEffect(() => {
     const apiRoute = "http://localhost:8001/api/days"
     axios
@@ -110,9 +121,9 @@ export default function Application(props) {
 
         <nav className="sidebar__menu">
           <DayList
-            days={days}
-            day={day}
-            setDay={setDay}
+            days={state.days} // new state object
+            day={state.day}   // new state object
+            setDay={setDay}   // new state object
           />
         </nav>
 
