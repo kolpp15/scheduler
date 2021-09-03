@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment/index";
-import axios from "axios";
 import { getAppointmentsForDay } from "helpers/selectors";
 
 // FAKE DATA NO LONGER NEEDED w/ AXIOS API GET
@@ -24,58 +24,59 @@ import { getAppointmentsForDay } from "helpers/selectors";
 //   },
 // ];
 
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "2pm",
-    interview: {
-      student: "Brian Sohn",
-      interviewer: {
-        id: 2,
-        name: "Tori Malcom",
-        avatar: "https://i.imgur.com/Nmx0Qxo.png",
-      }
-    }
-  },
-  {
-    id: 4,
-    time: "3pm",
-  },
-  {
-    id: 5,
-    time: "4pm",
-    interview: {
-      student: "Jenny Choi",
-      interviewer: {
-        id: 4,
-        name: "Cohana Roy",
-        avatar: "https://i.imgur.com/FK8V841.jpg",
-      }
-    }
-  },
-];
+// const appointments = [
+//   {
+//     id: 1,
+//     time: "12pm",
+//   },
+//   {
+//     id: 2,
+//     time: "1pm",
+//     interview: {
+//       student: "Lydia Miller-Jones",
+//       interviewer: {
+//         id: 1,
+//         name: "Sylvia Palmer",
+//         avatar: "https://i.imgur.com/LpaY82x.png",
+//       }
+//     }
+//   },
+//   {
+//     id: 3,
+//     time: "2pm",
+//     interview: {
+//       student: "Brian Sohn",
+//       interviewer: {
+//         id: 2,
+//         name: "Tori Malcom",
+//         avatar: "https://i.imgur.com/Nmx0Qxo.png",
+//       }
+//     }
+//   },
+//   {
+//     id: 4,
+//     time: "3pm",
+//   },
+//   {
+//     id: 5,
+//     time: "4pm",
+//     interview: {
+//       student: "Jenny Choi",
+//       interviewer: {
+//         id: 4,
+//         name: "Cohana Roy",
+//         avatar: "https://i.imgur.com/FK8V841.jpg",
+//       }
+//     }
+//   },
+// ];
 
 
 
 export default function Application(props) {
   // const [day, setDay] = useState("Monday");
   // const [days, setDays] = useState([]);
+  // const setDays = days => setState(prev => ({ ...prev, days}));
 
   // combine two states
   const [state, setState] = useState({
@@ -85,19 +86,10 @@ export default function Application(props) {
   });
 
   const setDay = day => setState({ ...state, day });
-  const setDays = days => setState(prev => ({ ...prev, days}));
-
-  useEffect(() => {
-    const apiRoute = "http://localhost:8001/api/days"
-    axios
-      .get(apiRoute)
-      .then((response) => {
-        setDays([...response.data])
-      });
-  });
-
-
-  const appointmentArr = appointments.map(appointment => {
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+  
+  const appointmentArr = dailyAppointments.map(appointment => {
+                        //change to api fetching variable
     return (
       <Appointment 
         key={appointment.id} 
@@ -106,6 +98,35 @@ export default function Application(props) {
     );
   });
 
+  
+  useEffect(() => {
+    const getDays = "http://localhost:8001/api/days"
+    const getAppt = "http://localhost:8001/api/appointments"
+    const getIntv = "http://localhost:8001/api/interviewers"
+    
+    Promise.all([
+      axios.get(getDays),
+      axios.get(getAppt),
+      axios.get(getIntv)
+    ]).then((all) => {
+      setState(prev => ({
+        ...prev,
+        days:         all[0].data,
+        appointments: all[1].data,
+        interviewers: all[2].data,
+      }))
+      console.log('days data: ', all[0].data);
+      console.log('appt data: ', all[1].data);
+      console.log('intv data: ', all[2].data);
+    })
+
+    // axios
+    //   .get(getDays).then((response) => {
+    //     // setDays([...response.data])
+    //   });
+
+    // add second parameter to STOP
+  }, []);
 
   return (
     <main className="layout">
