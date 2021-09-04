@@ -24,7 +24,7 @@ export function getInterview(state, interview) {
   } else {
     return {
       student: interview.student,
-      "interviewer": state.interviewers[interview.interviewer]
+      "interviewer": state.interviewers[interview.interviewer] //inside appointments object
     }
   }
 

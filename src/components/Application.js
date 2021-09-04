@@ -3,7 +3,7 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment/index";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 // FAKE DATA NO LONGER NEEDED w/ AXIOS API GET
 // const days = [
@@ -82,7 +82,7 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    // appointments: {}
+    appointments: {}
   });
 
   const setDay = day => setState({ ...state, day });
@@ -95,6 +95,7 @@ export default function Application(props) {
       <Appointment 
         key={appointment.id} 
         {...appointment} 
+        interview={interview}
       />
     );
   });
