@@ -3,7 +3,7 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment/index";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 // FAKE DATA NO LONGER NEEDED w/ AXIOS API GET
 // const days = [
@@ -87,6 +87,7 @@ export default function Application(props) {
 
   const setDay = day => setState({ ...state, day });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const interviewers = getInterviewersForDay(state, state.day);
   
   const appointmentArr = dailyAppointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
@@ -96,6 +97,7 @@ export default function Application(props) {
         key={appointment.id} 
         {...appointment} 
         interview={interview}
+        interviewers={interviewers}
       />
     );
   });
@@ -129,6 +131,8 @@ export default function Application(props) {
 
     // add second parameter to STOP
   }, []);
+
+
 
   return (
     <main className="layout">
