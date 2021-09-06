@@ -9,7 +9,7 @@ export default function useVisualMode(initial) {
     if (!replace) { //true
       setHistory([...history, mode])
       setMode(mode);
-    } else {
+    } else { 
       history.pop();
       setHistory([...history, mode])
       setMode(mode);

@@ -78,16 +78,22 @@ export default function Application(props) {
   // const [days, setDays] = useState([]);
   // const setDays = days => setState(prev => ({ ...prev, days}));
 
+  
   // combine two states
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {}
   });
-
+  
   const setDay = day => setState({ ...state, day });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
+  
+  // logging the values that we pass to it
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
   
   const appointmentArr = dailyAppointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
@@ -98,6 +104,7 @@ export default function Application(props) {
         {...appointment} 
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   });
@@ -119,9 +126,9 @@ export default function Application(props) {
         appointments: all[1].data,
         interviewers: all[2].data,
       }))
-      console.log('days data: ', all[0].data);
-      console.log('appt data: ', all[1].data);
-      console.log('intv data: ', all[2].data);
+      // console.log('days data: ', all[0].data);
+      // console.log('appt data: ', all[1].data);
+      // console.log('intv data: ', all[2].data);
     })
 
     // axios
