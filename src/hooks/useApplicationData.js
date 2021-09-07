@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios                          from "axios";
 
+
 export default function useApplicationData() {
+
+  // HELPER: remainingSpots Function -----------------------------------------
+  const spotsRemain = (id, change) => {
+    const daysArr = [...state.days]                 // initial array
+    daysArr.map((day) => {
+      for (const appointment of day.appointments) { // loop through appointments 
+        if (appointment === id) {                   // match appointment and ID
+          day.spots = day.spots + change;           // both increment and decrement
+        } 
+      }
+      return day.spots;
+    })
+    return daysArr;
+  }
 
   // STATE -------------------------------------------------------------------
   const [state, setState] = useState({
@@ -36,9 +51,6 @@ export default function useApplicationData() {
 
   // bookInterview -----------------------------------------------------------
   function bookInterview(id, interview) {
-    console.log('THIS IS THE ID: >>>', id);
-    console.log('THIS IS THE INTERVIEW: >>>', interview);
-
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -51,6 +63,7 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, {interview} )
     .then((response) => {
+      spotsRemain(id, -1);     // DECREMENT -1 helper function
       setState({
         ...state, 
         appointments
@@ -72,6 +85,7 @@ export default function useApplicationData() {
 
     return axios.delete(`/api/appointments/${id}`, {interview: null} )
     .then((response) => {
+      spotsRemain(id, 1);      // INCREMENT +1 helper function
       setState({
         ...state, 
         appointments
