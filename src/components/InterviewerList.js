@@ -14,7 +14,7 @@ export default function InterviewerList(props) {
         avatar={interviewer.avatar}
         selected={interviewer.id === props.value}
         setInterviewer={() => props.onChange(interviewer.id)}
-        // selected={interviewer.id === props.interviewer} // Interviewers && line 132 in index.js Storybook
+        // selected={interviewer.id === props.interviewer} 
         // setInterviewer={event => props.setInterviewer(interviewer.id)}
       />
     )

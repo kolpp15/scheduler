@@ -10,9 +10,13 @@ it("renders without crashing", () => {
   render(<Button />);
 });
 
+// render is imported from react-testing-library 
+// expect is injected globally by Jest            https://jestjs.io/docs/expect 
+// getByTest is part of the dom-testing-library   https://testing-library.com/docs/queries/about/
+// toBeInTheDocument is from jest-dom library     https://github.com/testing-library/jest-dom
 it("renders its `children` prop as text", () => {
   const { getByText } = render(<Button>Default</Button>);
-  expect(getByText("Default")).toBeInTheDocument();
+  expect(getByText("Default")).toBeInTheDocument();         // expects to see the text "Default" within a button in the document
 });
 
 it("renders a default button style", () => {
