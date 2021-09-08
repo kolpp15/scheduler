@@ -23,11 +23,12 @@ export default function Form(props) {
     props.onCancel();
   }
 
-  function validate() {
+  const validate = () => {
     if (name === "") {
       setError("Student name cannot be blank!!!!!"); // this will still pass the test 
       return;
     }
+    setError("");
     props.onSave(name, interviewer);
   }
 
