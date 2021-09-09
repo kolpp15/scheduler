@@ -3,16 +3,16 @@ Interview Scheduler is an application where a student can create, edit and delet
 
 # Screenshots
 ### Homepage
-!["Home"]()
+!["Home"](https://github.com/kolpp15/scheduler/blob/master/docs/Home.png?raw=true)
 
 ### Add Schedule
-!["Add"]()
+!["Add"](https://github.com/kolpp15/scheduler/blob/master/docs/Add.gif?raw=true)
 
 ### Delete Schedule
-!["Delete"]()
+!["Delete"](https://github.com/kolpp15/scheduler/blob/master/docs/Delete.gif?raw=true)
 
 ### Change Days
-!["Change"]()
+!["Change"](https://github.com/kolpp15/scheduler/blob/master/docs/Days.gif?raw=true)
 
 # Getting Started
 1. Fork this repository, then clone your fork of this repository.
