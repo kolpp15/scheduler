@@ -27,7 +27,7 @@ export default function Appointment(props) {
     );
     
   function save(name, interviewer) {
-    console.log('interviewerrrrr', interviewer);
+    // console.log('interviewerrrrr', interviewer);
     const interview = {
       student: name,
       interviewer

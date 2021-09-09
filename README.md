@@ -1,23 +1,47 @@
 # Interview Scheduler
+Interview Scheduler is an application where a student can create, edit and delete interview appointments. This application is created with modern tools and techniques by using React.
 
-## Setup
+# Screenshots
+### Homepage
+!["Home"]()
 
-Install dependencies with `npm install`.
+### Add Schedule
+!["Add"]()
 
-## Running Webpack Development Server
+### Delete Schedule
+!["Delete"]()
 
-```sh
-npm start
-```
+### Change Days
+!["Change"]()
 
-## Running Jest Test Framework
+# Getting Started
+1. Fork this repository, then clone your fork of this repository.
+2. Install dependencies using the `npm install` command.
+3. Start the web server using the `npm start` command. The app will be served at http://localhost:8000/.
+4. Go to http://localhost:8000/ in your browser.
+5. Pages
+    - Homepage: 
+        - Navigate through different days of the week and check the available slots.
+    - Add Schedule:
+        - Click the `+` button to add schedule.
+        - Add your name, select the interviewer, and click save.
+    - Edit Schedule:
+        - Click Edit button on your added schedule.
+        - Change your name, interviewer, and click save.
+    - Delete Schedule: 
+        - Click Delete button on your added schedule.
+        - Click confirm to delete your schedule.
 
-```sh
-npm test
-```
-
-## Running Storybook Visual Testbed
-
-```sh
-npm run storybook
-```
+# Dependencies
+- React
+- Axios
+- Classnames
+- Cypress
+- React-dom
+- React-scripts
+- Normalize.css
+- Storybook
+- Webpack
+- Babel
+- Testing Library
+- Jest

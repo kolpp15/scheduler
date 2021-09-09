@@ -93,8 +93,8 @@ export default function Application(props) {
   
   // logging the values that we pass to it
   function bookInterview(id, interview) {
-    console.log('THIS IS THE ID: >>>', id);
-    console.log('THIS IS THE INTERVIEW: >>>', interview);
+    // console.log('THIS IS THE ID: >>>', id);
+    // console.log('THIS IS THE INTERVIEW: >>>', interview);
 
     const appointment = {
       ...state.appointments[id],
